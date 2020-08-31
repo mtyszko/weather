@@ -2,6 +2,9 @@
 
 This is a simple API for weather app (click [here](https://weather.mtdev.pl) to see full app).
 
+Location data provided by [Mapbox](https://www.mapbox.com/) API
+Weather forecast by [OpenWeather](https://www.mapbox.com/) API
+
 ## Contribute
 
 - Source Code: [https://github.com/mtyszko/weather](https://github.com/mtyszko/weather)
@@ -10,8 +13,8 @@ This is a simple API for weather app (click [here](https://weather.mtdev.pl) to 
 
 ## Support
 
-If you are having issues, please let us know.
-We have a mailing list located at: mtdev404@gmail.com
+If you are having issues, please let me know.
+I have a mailing list located at: mtdev404@gmail.com
 
 ## License
 
