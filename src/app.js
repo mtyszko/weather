@@ -8,19 +8,14 @@ app.get('/api-weather', async (req, res) => {
   const query = req.query.location;
   if (!query) return res.send({ error: 'location is missing!' });
 
-  const locationData = await getLocationData(query);
-  if (locationData.error) return res.send(locationData);
-
-  const location = locationData.reduce((acc, el) => ({
-    lat: acc,
-    lon: el,
-  }));
+  const location = await getLocationData(query);
+  if (location.error) return res.send(location);
 
   const { lat, lon } = location;
 
   const forecast = await getForecast(lat, lon);
 
-  res.send(forecast);
+  res.send({ location, forecast });
 });
 
 app.get('*', (req, res) => {
