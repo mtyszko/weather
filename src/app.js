@@ -23,15 +23,14 @@ app.get('/api-weather', async (req, res) => {
 });
 
 app.get('/api-weather-coords', async (req, res) => {
-  const queryLat = req.query.lat;
-  const queryLon = req.query.lon;
-  if (!queryLat || !queryLon)
+  const query = `${req.query.lon},${req.query.lat}`;
+  if (!query)
     return res.send({
       error:
         'Nie rozumiem zapytania. Podaj proszę prawidłowe kooorynaty lub wpisz nazwę lokalizacji',
     });
 
-  const location = await getLocationData(queryLon, queryLat);
+  const location = await getLocationData(query);
   if (location.error) return res.send(location);
 
   const { lat, lon } = location;
