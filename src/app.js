@@ -6,9 +6,32 @@ const app = express();
 
 app.get('/api-weather', async (req, res) => {
   const query = req.query.location;
-  if (!query) return res.send({ error: 'location is missing!' });
+  if (!query)
+    return res.send({
+      error:
+        'Nie rozumiem zapytania. Podaj proszę prawidłową lokalizację lub wpisz koordynaty',
+    });
 
   const location = await getLocationData(query);
+  if (location.error) return res.send(location);
+
+  const { lat, lon } = location;
+
+  const forecast = await getForecast(lat, lon);
+
+  res.send({ location, forecast });
+});
+
+app.get('/api-weather-coords', async (req, res) => {
+  const queryLat = req.query.lat;
+  const queryLon = req.query.lon;
+  if (!queryLat || !queryLon)
+    return res.send({
+      error:
+        'Nie rozumiem zapytania. Podaj proszę prawidłowe kooorynaty lub wpisz nazwę lokalizacji',
+    });
+
+  const location = await getLocationData(queryLon, queryLat);
   if (location.error) return res.send(location);
 
   const { lat, lon } = location;

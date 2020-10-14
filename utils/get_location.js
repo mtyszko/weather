@@ -9,7 +9,10 @@ const getLocationData = async (query) => {
     const resData = await res.json();
 
     if (!resData.features || !resData.features.length)
-      return { error: 'location not found!' };
+      return {
+        error:
+          'Nie rozumiem zapytania. Podaj proszę prawidłowe kooorynaty lub wpisz nazwę lokalizacji',
+      };
 
     const locationData = resData.features[0].center;
     console.log(resData.features[0]);
@@ -27,5 +30,3 @@ const getLocationData = async (query) => {
 };
 
 module.exports = getLocationData;
-
-// https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponentlocation.json?access_token=pk.eyJ1IjoibXRkZXY0MDQiLCJhIjoiY2tkNXZxZ3J3MDBuaTJxdGdmYjh4ZGNraiJ9.cBl4-YvJOGj9PVoZbuddow&limit=1&language=pl
